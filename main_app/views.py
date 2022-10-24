@@ -24,3 +24,7 @@ class EmployeeCreate(CreateView):
     model = Employee
     fields = '__all__'
     success_url = '/employees' 
+
+class EmployeeUpdate(UpdateView):
+    model = Employee
+    fields = ['name', 'description', 'years']
