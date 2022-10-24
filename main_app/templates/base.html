@@ -15,10 +15,16 @@
         </div>
         <div class="header-right">
             <a href="/about">About</a>
+            {% if user.is_authenticated %}
             <a href="{% url 'languages_index' %}">View All Coding Languages</a>
             <a href="{% url 'languages_create' %}">Add a Coding Languages</a>
             <a href="/employees">View Employees</a>
             <a href="{% url 'employees_create' %}">Add a Employee</a>
+            <a href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a>
+            <a href="{% url  'login'%}">Log In</a>
+            {% endif %}
         </div>
     </div>
     <main>{% block content %} {% endblock %}</main>
