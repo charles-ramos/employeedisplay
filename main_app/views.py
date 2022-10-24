@@ -18,3 +18,9 @@ def employees_detail(request, employee_id):
     return render(request, 'employees/detail.html', {
         'employee': employee
     })
+
+
+class EmployeeCreate(CreateView):
+    model = Employee
+    fields = '__all__'
+    success_url = '/employees' 
