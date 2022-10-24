@@ -8,21 +8,22 @@
 
 
         <div class="card">
-            <div>
-                {{ employee.name}}
-            </div>
-            <div>
-                Description: {{ employee.description}}
-            </div>
-            <div>
-                {% if employee.years > 0 %}
-                Years At Company: {{ employee.years }}
-                {% else %}
-                Years At Company: New Employee
-                {% endif %}
-            </div>
+            <a href="{% url 'detail' employee.id %}">
+                <div>
+                    {{ employee.name}}
+                </div>
+                <div>
+                    Description: {{ employee.description}}
+                </div>
+                <div>
+                    {% if employee.years > 0 %}
+                    Years At Company: {{ employee.years }}
+                    {% else %}
+                    Years At Company: New Employee
+                    {% endif %}
+                </div>
         </div>
-
+        </a>
         {% endfor %}
 
     </div>

@@ -12,3 +12,9 @@ def about(request):
 def employees_index(request):
     employees = Employee.objects.all()
     return render(request, 'employees/index.html',{'employees': employees} )
+
+def employees_detail(request, employee_id):
+    employee = Employee.objects.get(id=employee_id)
+    return render(request, 'employees/detail.html', {
+        'employee': employee
+    })
