@@ -15,14 +15,15 @@ def employees_index(request):
 
 def employees_detail(request, employee_id):
     employee = Employee.objects.get(id=employee_id)
+    languages_employee_doesnt_know = Language.objects.exclude(id__in = employee.languages.all().values_list('id'))
     return render(request, 'employees/detail.html', {
-        'employee': employee
+        'employee': employee,
+        'languages': languages_employee_doesnt_know,
     })
 
-class LanguageList(ListView):
-    model = Language
-    template_name = 'languages/index.html'
-
+def assoc_language(request, employee_id, language_id):
+    Employee.objects.get(id=employee_id).languages.add(language_id)
+    return redirect('detail', employee_id=employee_id)
 
 class EmployeeCreate(CreateView):
     model = Employee
@@ -36,3 +37,12 @@ class EmployeeUpdate(UpdateView):
 class EmployeeDelete(DeleteView):
     model = Employee
     success_url = '/employees'
+
+class LanguageList(ListView):
+    model = Language
+    template_name = 'languages/index.html'
+
+class LanguageCreate(CreateView):
+    model = Language
+    fields = ('name', 'type')
+    success_url = '/languages'
