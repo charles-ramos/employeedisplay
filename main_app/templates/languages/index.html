@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Langauge List</h1>
+{% for language in object_list %}
+
+{{ language.name }}
+
+{% endfor %}
+
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Employee
+from .models import Employee, Language
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
@@ -19,6 +19,10 @@ def employees_detail(request, employee_id):
         'employee': employee
     })
 
+class LanguageList(ListView):
+    model = Language
+    template_name = 'languages/index.html'
+
 
 class EmployeeCreate(CreateView):
     model = Employee
@@ -28,3 +32,7 @@ class EmployeeCreate(CreateView):
 class EmployeeUpdate(UpdateView):
     model = Employee
     fields = ['name', 'description', 'years']
+
+class EmployeeDelete(DeleteView):
+    model = Employee
+    success_url = '/employees'
