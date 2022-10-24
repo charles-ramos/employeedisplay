@@ -1,14 +1,31 @@
 {% extends 'base.html' %} {% block content %}
+
 <h1>Employee Display</h1>
 
-{% for employee in employees %}
-<div class="card">
-    {{ employee.name}}
-    Description: {{ employee.description}}
-    {% if employee.years > 0 %}
-    <p>Years At Company: {{ employee.years }}</p>
-    {% else %}
-    <p>Years At Company: New Employee</p>
-    {% endif %}
+<div class="body">
+    <div class="holder">
+        {% for employee in employees %}
+
+
+        <div class="card">
+            <div>
+                {{ employee.name}}
+            </div>
+            <div>
+                Description: {{ employee.description}}
+            </div>
+            <div>
+                {% if employee.years > 0 %}
+                Years At Company: {{ employee.years }}
+                {% else %}
+                Years At Company: New Employee
+                {% endif %}
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
 </div>
-{% endfor %} {% endblock %}
+
+{% endblock %}
