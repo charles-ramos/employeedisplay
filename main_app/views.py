@@ -48,7 +48,7 @@ def signup(request):
 
 class EmployeeCreate(CreateView):
     model = Employee
-    fields = '__all__'
+    fields = ['name', 'description', 'years']
     success_url = '/employees' 
 
 class EmployeeUpdate(UpdateView):
