@@ -1,29 +1,25 @@
 {% extends 'base.html' %} {% block content %}
-
 <h1>Employee Display</h1>
 
 <div class="body">
-    <div class="holder">
+    <div class="container">
         {% for employee in employees %}
-
-
         <div class="card">
-            <a href="{% url 'detail' employee.id %}">
-                <div>
-                    {{ employee.name}}
+            <div class="box">
+                <div class="content">
+                         <h2>{{ employee.name}}</h2>
+                        <hr>
+                        <h3>{% if employee.years > 0 %}
+                            Years At Company: {{ employee.years }}
+                            {% else %}
+                            Years At Company: New Employee
+                            {% endif %}</h3>
+                            <br>
+                        <p>Description: {{ employee.description }}</p>
+                        <a href="{% url 'detail' employee.id %}"><p>Read More</p></a>
                 </div>
-                <div>
-                    Description: {{ employee.description}}
-                </div>
-                <div>
-                    {% if employee.years > 0 %}
-                    Years At Company: {{ employee.years }}
-                    {% else %}
-                    Years At Company: New Employee
-                    {% endif %}
-                </div>
+            </div>
         </div>
-        </a>
         {% endfor %}
 
     </div>
