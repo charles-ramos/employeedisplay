@@ -2,7 +2,7 @@
 This is a site that allows you to browse see employees and the coding langauges that they know.
 
 # Getting Started
-- [Heroku Link]([https://employeedisplay.herokuapp.com/])
+- <a href="https://employeedisplay.herokuapp.com/" target="_blank">Heroku Link</a>
 
 # Technologies Used
 - HTML
