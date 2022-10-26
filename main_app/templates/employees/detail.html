@@ -1,43 +1,46 @@
 {% extends 'base.html' %} {% block content %}
-<h3>
-    {{ employee.name }}
-    <br>
-    {{ employee.description }}
-    <br>
-    {{ employee.years }}
-</h3>
-<a href="{% url 'employees_update' employee.id %}">Edit</a>
-<a href="{% url 'employees_delete' employee.id %}">Delete</a>
-<div>
-    <h3>{{ employee.name }}'s Code Known Languages</h3>
-    <br>
-    {% if employee.languages.count %} {% for language in employee.languages.all %}
 
-    {{language.name}}
+<div class="body">
+    <div class="container">
+        <div class="card">
 
-    {% endfor %} {% else %}
+            <h1>
+                {{ employee.name }}
+            </h1>
+            <h4>Years at Company: {{ employee.years }}</h4>
+            <p>{{ employee.description }}</p>
+            <div class="btnhold"><a href="{% url 'employees_update' employee.id %}">Edit</a></div>
+            <div class="btnhold"><a href="{% url 'employees_delete' employee.id %}">Delete</a></div>
+            
 
-    <h5>No Languages</h5>
-    {% endif %}
+            <h1>{{ employee.name }}'s Code Known Languages</h1>
+            <br>
+            {% if employee.languages.count %} {% for language in employee.languages.all %}
+
+            <h3>{{language.name}}</h3>
+            
+
+            {% endfor %} {% else %}
+
+            <h5>No Languages</h5>
+            {% endif %}
+
+            <h3>Available Languages</h3>
+            {% if languages.count %}
+            {% for language in languages.all %}
+
+            {{language.name}}
+            <br>
+
+            <form action="{% url 'assoc_language' employee.id language.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Add</button>
+            </form>
+            {% endfor %}
+            {% else %}
+            <h5>{{ employee.name }} Already Knows All Languages Available</h5>
+            {% endif %}
+        </div>
+    </div>
 </div>
-
-<div>
-    <h3>Available Languages</h3>
-    {% if languages.count %}
-    {% for language in languages.all %}
-
-    {{language.name}}
-    <br>
-
-    <form action="{% url 'assoc_language' employee.id language.id %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn">Add</button>
-    </form>
-    {% endfor %}
-    {% else %}
-    <h5>{{ employee.name }} Already Knows All Languages Available</h5>
-    {% endif %}
-</div>
-
-
 {% endblock %}

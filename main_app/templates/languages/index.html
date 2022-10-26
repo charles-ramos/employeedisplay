@@ -3,11 +3,18 @@
 {% block content %}
 
 <h1>Langauge List</h1>
-{% for language in object_list %}
+<div class="body">
+    <div class="container"></div>
 
-{{ language.name }}
-<br>
-
-{% endfor %}
-
+    {% for language in object_list %}
+    <div class="card">
+        <div class="box">
+            <div class="content">
+                {{ language.name }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
 {% endblock %}
