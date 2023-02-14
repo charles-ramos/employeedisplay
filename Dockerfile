@@ -2,6 +2,8 @@ FROM python:3-alpine
 
 ENV PYTHONUNBUFFERED=1
 
+WORKDIR /app
+
 COPY requirements.txt /requirements.txt
 
 RUN set -ex \
@@ -13,7 +15,7 @@ RUN set -ex \
  apk --purge del .build-deps
 
 COPY . /app
-WORKDIR /app
+
 
 EXPOSE 8000
 
