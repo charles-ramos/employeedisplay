@@ -1,6 +1,6 @@
 FROM python:3-alpine
 
-WORKDIR /app
+WORKDIR /main_app
 
 COPY requirements.txt .
 
@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["python3", "app.py"]
+CMD ["python3", "apps.py"]
