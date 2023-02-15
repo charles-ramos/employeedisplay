@@ -1,19 +1,17 @@
-FROM python:3-alpine
+# Pull base image
+FROM python:3.10.2-slim-bullseye
 
-ENV PYTHONUNBUFFERED=1
+# Set environment variables
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-COPY requirements.txt /requirements.txt
+# Set work directory
+WORKDIR /code
 
-RUN set -ex \
- && pip install --upgrade pip && \
- apk add --no-cache python3 postgresql-libs && \
- apk add --no-cache --virtual .build-deps gcc python3-dev musl-dev postgresql-dev && \
- python3 -m pip install -r requirements.txt --no-cache-dir && \
- apk --purge del .build-deps
+# Install dependencies
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
 
-COPY . /app
-WORKDIR /app
-
-EXPOSE 8000
-
-CMD [ "python", "manage.py"]
+# Copy project
+COPY . .
